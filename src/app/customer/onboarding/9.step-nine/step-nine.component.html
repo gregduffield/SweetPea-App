@@ -1,0 +1,46 @@
+<app-step title="One last thing...">
+  <form [formGroup]="form">
+    <app-step-box color="blue">
+    
+      What is the age of the person who would like some extra help?
+    </app-step-box>
+    <ion-row>
+      <ion-col>
+        We're not just being nosey, it's just that some providers are more
+        specialised in supporting younger adults.
+      </ion-col>
+    </ion-row>
+    <app-step-box color="pink"
+                  >
+                  
+            
+                    <ion-row>
+                      <ion-col >
+                        <ion-item color="secondary">
+                          <ion-label position="floating">Age</ion-label>
+                         
+                          <ion-input  class="set-width" formControlName="age" id="age"></ion-input>
+                        </ion-item></ion-col>
+                  
+                      <ion-col>
+                        <ion-item color="secondary">
+                          <ion-label position="floating">Postcode</ion-label>
+                         
+                          <ion-input class="set-width" formControlName="postcode" id="postcode"></ion-input>
+                        </ion-item></ion-col>
+                    </ion-row>
+               
+     
+     
+    </app-step-box>
+
+     <ion-grid>
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button color="primary" shape="round" fill="outline"
+                [disabled]="form.invalid"
+                routerLink="../results">
+          Find care <i class="fa fa-chevron-right"></i></ion-button>
+     </ion-col></ion-row></ion-grid>
+  </form>
+</app-step>

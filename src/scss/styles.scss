@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "cabinet-grotesk";
+@import "utils";
+
+
+
+
+
+body {
+  font-family: "CabinetGrotesk-Regular";
+
+}
+
+h1,
+h2,
+h3 {
+  font-family: "CabinetGrotesk-Extrabold";
+}
+
+.btn {
+  border-width: 3px !important;
+}
+
+
+
+.striped-blue {
+  background-color: var(--bs-blue);
+  color: #fff;
+  padding: 20px 30px 20px 30px;
+
+  margin-bottom: 10px;
+
+ 
+}
+
+.striped-pink {
+  background-color: var(--bs-pink);
+  color: #fff;
+  padding: 20px 30px 20px 30px;
+
+  margin-bottom: 10px;
+
+ 
+}
+
+
+.f1-25 {
+  font-size: 1.25rem;
+
+  
+
+}
+
+.font-weight-bold {
+  font-family: 'CabinetGrotesk-Extrabold';
+}
+
+.blue {
+
+  .form-check-input:checked {
+    border-color: var(--ion-color-primary);
+    background-color: var(--ion-color-primary);
+  }
+}
+
+.pink {
+
+  .form-check-input:checked {
+    border-color: var(--ion-color-secondary);
+    background-color: var(--ion-color-secondary);
+  }
+}
