@@ -1,0 +1,7 @@
+{
+  "name": "sweetpea-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
