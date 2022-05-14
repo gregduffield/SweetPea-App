@@ -1,39 +1,36 @@
 <app-step title="Who are you looking for care for?">
   <form [formGroup]="form">
-    <app-step-box color="blue"
+    <app-step-box 
                   class="my-5"
                   [align]="'ion-text-start'">
 
-                  <ion-checkbox color="primary"  id="chkLovedOne"
+                  <ion-checkbox color="tertiary"  id="chkLovedOne"
                   name="other"
-                  value=""
+                 
                   aria-label="..." formControlName="other"></ion-checkbox>
   
       <label for="chkLovedOne"
-             class="ms-2">I'm looking for my loved one</label>
+             class="ion-margin-start"><ion-text color="primary">I'm looking for my loved one</ion-text></label>
     </app-step-box>
-    <app-step-box color="pink"
+    <app-step-box 
                   class="my-5"
                   [align]="'ion-text-start'">
-                  <ion-checkbox color="secondary"  id="chkSelf"
+                  <ion-checkbox color="tertiary"  id="chkSelf"
                   name="self"
-                  value=""
+                
                   aria-label="..." formControlName="self"></ion-checkbox>
      
       <label for="chkSelf"
-             class="ms-2">I'm looking for myself</label>
+             class="ion-margin-start"><ion-text color="primary">I'm looking for myself</ion-text></label>
     </app-step-box>
     <ion-grid>
        <ion-row>
          <ion-col class="ion-text-center">
-    <ion-button color="primary" shape="round" fill="outline"
-            [disabled]="form.invalid"
-            routerLink="../step-3">
-      Next question <i class="fa fa-chevron-right"></i>
-    </ion-button>
+  
     </ion-col>
     </ion-row>
     </ion-grid>
 
   </form>
 </app-step>
+<app-bottom-nav-button [form]="form" [routerLink]="'../step-3'"></app-bottom-nav-button>

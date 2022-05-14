@@ -1,16 +1,14 @@
 <div [ngClass]="class">
 
-  <app-box-wave [color]="color"
-                position="top"></app-box-wave>
-
-  <ion-item [color]="color === 'blue' ? 'primary' : 'secondary'"
+  
+<ion-card >
+  <ion-item 
        [ngClass]="align"
-       class=" text-white font-weight-bold f1-25  p-2">
+       class=" text-white  f1-25  p-2">
 
     <ng-content></ng-content>
 
 
   </ion-item>
-  <app-box-wave [color]="color"
-                position="bottom"></app-box-wave>
+</ion-card>
 </div>

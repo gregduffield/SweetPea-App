@@ -1,14 +1,19 @@
 
 <ion-app>
-  <ion-header>
-    <ion-toolbar>
+  <ion-header class="ion-no-border" color="light">
+    <ion-toolbar color="light">
+      <ion-buttons slot="start" color="primary">
+        <ion-back-button ></ion-back-button>
+      </ion-buttons>
       <ion-title><div class="ion-padding ion-text-center">
-        <img width="250px" src="/assets/site-logo.svg" />
+        <img width="150px" src="/assets/site-logo.svg" />
       </div></ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <ion-content class="ion-padding">
+  <ion-content class="ion-padding" color="light">
     <ion-router-outlet></ion-router-outlet>
   </ion-content>
+
+ 
 </ion-app>

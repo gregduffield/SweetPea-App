@@ -1,29 +1,29 @@
 <app-step title="One last thing...">
   <form [formGroup]="form">
-    <app-step-box color="blue">
-    
-      What is the age of the person who would like some extra help?
+    <app-step-box >
+    <ion-text color="primary">
+      What is the age of the person who would like some extra help?</ion-text>
     </app-step-box>
     <ion-row>
-      <ion-col>
+      <ion-col><ion-text color="primary">
         We're not just being nosey, it's just that some providers are more
-        specialised in supporting younger adults.
+        specialised in supporting younger adults.</ion-text>
       </ion-col>
     </ion-row>
-    <app-step-box color="pink"
+    <app-step-box 
                   >
                   
             
                     <ion-row>
                       <ion-col >
-                        <ion-item color="secondary">
+                        <ion-item >
                           <ion-label position="floating">Age</ion-label>
                          
                           <ion-input  class="set-width" formControlName="age" id="age"></ion-input>
                         </ion-item></ion-col>
                   
                       <ion-col>
-                        <ion-item color="secondary">
+                        <ion-item >
                           <ion-label position="floating">Postcode</ion-label>
                          
                           <ion-input class="set-width" formControlName="postcode" id="postcode"></ion-input>

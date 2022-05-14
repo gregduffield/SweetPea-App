@@ -2,6 +2,7 @@ import { FormProvider } from '../form-provider';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
+
 @Component({
   selector: 'app-step-two',
   templateUrl: './step-two.component.html',
@@ -14,6 +15,8 @@ export class StepTwoComponent implements OnInit {
   other!: FormControl;
   constructor(private formProvider: FormProvider) {
     this.form = <FormGroup>formProvider.getForm().get('who');
+
+    console.log(this.form);
     this.self = <FormControl>this.form.get('self');
     this.other = <FormControl>this.form.get('other');
 

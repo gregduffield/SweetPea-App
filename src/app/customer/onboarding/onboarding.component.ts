@@ -12,8 +12,8 @@ import { FormProvider } from './form-provider';
 export class OnboardingComponent extends FormProvider implements OnInit {
   onboardingForm = new FormGroup({
     who: new FormGroup({
-      self: new FormControl('', Validators.required),
-      other: new FormControl('', Validators.required),
+      self: new FormControl(false, Validators.required),
+      other: new FormControl(false, Validators.required),
     }),
     typeOfCare: new FormGroup({}),
     additionalNeeds: new FormGroup({}),
