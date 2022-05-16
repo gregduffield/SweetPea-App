@@ -1,18 +1,47 @@
 <app-step title="When would you like the care to start?">
-  <form [formGroup]="form">
+  <form [formGroup]="dateTimeForm">
     <app-step-box [align]="'ion-text-start'"
-                  *ngFor="let item of form.value | keyvalue; let i = index"
+                
                 >
 
                   <ion-checkbox    color="tertiary"
                   value=""
-                  [id]="'chk' + item.key" ></ion-checkbox>
+                  [formControlName]="'immediately'"
+                  id="chkImmediately" ></ion-checkbox>
         <label class="form-check-label ms-2"
-               [for]="'chk' + item.key"class="ion-margin-start"><ion-text color="primary">
-          {{ item.key }} </ion-text>
+               for="chkImmediately" class="ion-margin-start"><ion-text color="primary">
+         Immediately</ion-text>
         </label>
      
     </app-step-box>
+
+    
+        <app-step-box [align]="'ion-text-start'"
+                
+        >
+
+         
+
+
+  <ion-accordion-group class="w-100">
+    <ion-accordion value="start" toggle-icon="calendar-outline">
+      <ion-item slot="header">
+        <ion-label color="primary">{{!!dateTimeForm.get('date').value ? (dateTimeForm.get('date').value | date: 'dd/MM/yyyy') : 'Pick date'}}</ion-label>
+        <ion-note slot="end" id="datetimeValue"></ion-note>
+      </ion-item>
+      <ion-datetime (ionChange)="accordionGroup.value = undefined;" 
+        id="datetime"
+        slot="content"
+        presentation="date"
+        displayFormat="MMMM YY"
+        formControlName="date"
+      ></ion-datetime>
+    </ion-accordion>
+  </ion-accordion-group>
+
+</app-step-box>
+     
+    
     
   </form>
 </app-step>

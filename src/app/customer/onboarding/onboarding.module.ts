@@ -1,3 +1,6 @@
+import { LoadingScreenModule } from './../../shared/loading-screen/loading-screen.module';
+
+import { ResultsComponent } from './results/results.component';
 import { BottomNavButtonModule } from './../../shared/bottom-nav-button/bottom-nav-button.module';
 import { IonicModule } from '@ionic/angular';
 import { StepBoxModule } from './../../shared/step-box/step-box.module';
@@ -5,7 +8,7 @@ import { StepBoxModule } from './../../shared/step-box/step-box.module';
 import { StepNineComponent } from './9.step-nine/step-nine.component';
 import { StepEightComponent } from './8.step-eight/step-eight.component';
 import { StepSevenComponent } from './7.step-seven/step-seven.component';
-import { NgModule } from '@angular/core';
+import { NgModule, ɵclearResolutionOfComponentResourcesQueue } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StepOneComponent } from './1.step-one/step-one.component';
 
@@ -33,6 +36,7 @@ const routes: Routes = [
       { path: 'step-7', component: StepSevenComponent },
       { path: 'step-8', component: StepEightComponent },
       { path: 'step-9', component: StepNineComponent },
+      { path: 'results', component: ResultsComponent },
     ],
   },
 ];
@@ -50,6 +54,7 @@ const routes: Routes = [
     StepSevenComponent,
     StepEightComponent,
     StepNineComponent,
+    ResultsComponent
   ],
   imports: [
     IonicModule,
@@ -57,7 +62,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     StepBoxModule,
-   BottomNavButtonModule
+   BottomNavButtonModule,
+   LoadingScreenModule
   ],
 })
 export class OnboardingModule {}

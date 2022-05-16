@@ -1,17 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+ 
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-text><h3>Please choose if you are a customer or provider</h3></ion-text><ion-button color="medium" expand="block"
+
+[routerLink]="'/customer/onboarding'"><ion-text color="primary">
+Customer <ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
+</ion-button>
+<ion-button color="medium" expand="block"
+
+[routerLink]="'provider/onboarding'"><ion-text color="primary">
+Provider <ion-icon name="chevron-forward-outline"></ion-icon></ion-text>
+</ion-button>
 </ion-content>
