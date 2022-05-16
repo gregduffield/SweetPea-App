@@ -1,19 +1,15 @@
 <app-step title="One last thing...">
   <form [formGroup]="form">
-    <app-step-box >
-    <ion-text color="primary">
+   
+    <ion-text color="primary" class="ion-padding-start">
       What is the age of the person who would like some extra help?</ion-text>
-    </app-step-box>
-    <ion-row>
-      <ion-col><ion-text color="primary">
+    
+   <!-- <ion-text color="primary" class="ion-padding-start">
         We're not just being nosey, it's just that some providers are more
-        specialised in supporting younger adults.</ion-text>
-      </ion-col>
-    </ion-row>
+        specialised in supporting younger adults.</ion-text> -->
+      
     <app-step-box 
                   >
-                  
-            
                     <ion-row>
                       <ion-col >
                         <ion-item >
@@ -37,10 +33,10 @@
      <ion-grid>
     <ion-row>
       <ion-col class="ion-text-center">
-        <ion-button color="primary" shape="round" fill="outline"
+        <ion-button color="medium"  expand="block"
                 [disabled]="form.invalid"
                 routerLink="../results">
-          Find care <i class="fa fa-chevron-right"></i></ion-button>
+         <ion-text color="primary"> Find care <ion-icon name="chevron-forward-outline"></ion-icon> </ion-text></ion-button>
      </ion-col></ion-row></ion-grid>
   </form>
 </app-step>
