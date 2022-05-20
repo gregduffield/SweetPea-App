@@ -1,43 +1,69 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+<ion-header class="ion-no-border" color="medium">
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start" color="primary">
+      <ion-back-button icon="chevron-back-outline"></ion-back-button>
     </ion-buttons>
-    <ion-title>Sign in</ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content color="medium">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="ion-padding ion-text-center">
+          <img width="250px" src="/assets/site-logo.svg" />
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-text color="primary"
+          ><h5 class="ion-padding-start font-weight-bold">Sign in</h5></ion-text
+        >
+        <form>
+          <ion-card lines="full">
+            <ion-item>
+              <ion-icon name="person-outline" slot="start"></ion-icon>
+              <ion-input
+                type="text"
+                placeholder="Email"
+                #email
+                required
+              ></ion-input>
+            </ion-item>
+          </ion-card>
+          <ion-card lines="full">
+            <ion-item>
+              <ion-icon name="key-outline" slot="start"></ion-icon>
+              <ion-input
+                type="password"
+                placeholder="Password"
+                #password
+                required
+              ></ion-input>
+            </ion-item>
+          </ion-card>
+          <ion-row>
+            <ion-col>
+              <ion-button
+                color="light"
+                type="submit"
+                (click)="logIn(email, password)"
+                expand="block"
+                >Login</ion-button
+              >
 
-<ion-content>
-  <form>
-    <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" #email required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" #password required></ion-input>
-    </ion-item>
-    <ion-row>
-      <ion-col>
-        <ion-button
-          type="submit"
-          (click)="logIn(email, password)"
-          expand="block"
-          >Login</ion-button
-        >
+              <ion-text class="ion-text-center"><p>or</p></ion-text>
+              <ion-button
+                type="submit"
+                color="danger"
+                (click)="authService.googleAuth()"
+                expand="block"
+                >Login with Google</ion-button
+              >
+            </ion-col>
+          </ion-row>
+        </form>
       </ion-col>
     </ion-row>
-    <span class="divider line onle-line">or</span>
-    <ion-row>
-      <ion-col>
-        <ion-button
-          type="submit"
-          color="danger"
-          (click)="authService.googleAuth()"
-          expand="block"
-          >Login with Google</ion-button
-        >
-      </ion-col>
-    </ion-row>
-  </form>
+  </ion-grid>
 </ion-content>

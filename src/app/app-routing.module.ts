@@ -1,3 +1,5 @@
+import { LayoutModule } from './layout/layout.module';
+import { LayoutComponent } from './layout/layout.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
@@ -9,6 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'customer',
+    component: LayoutComponent,
     loadChildren: () =>
       import('./routes/customer/customer.module').then((m) => m.CustomerModule),
   },
@@ -53,7 +56,7 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }), LayoutModule
   ],
   exports: [RouterModule],
 })

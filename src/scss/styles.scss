@@ -7,7 +7,7 @@
 
 
 
-body, ion-text, ion-label, ion-content {
+body, ion-text, ion-label, ion-content, ion-card, ion-input, ion-button {
   font-family: "CabinetGrotesk-Regular" !important;
 
 }
@@ -53,7 +53,7 @@ h3 {
 }
 
 .font-weight-bold {
-  font-family: 'CabinetGrotesk-Extrabold';
+  font-family: 'CabinetGrotesk-Extrabold' !important;
 }
 
 
@@ -80,3 +80,15 @@ ion-button {
    box-shadow: none;
    border-radius: 4px;
  }
+
+ ion-input {
+  height:45px;
+  border-radius: 8px;
+ }
+
+
+  ion-input {
+    --placeholder-color: #2C3038;
+    --color: #2C3038;
+}
+ 

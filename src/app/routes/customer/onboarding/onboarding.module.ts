@@ -1,6 +1,6 @@
 import { LoadingScreenModule } from '../../../shared/loading-screen/loading-screen.module';
 
-import { ResultsComponent } from '../../../customer/onboarding/results/results.component';
+import { ResultsComponent } from './results/results.component';
 import { BottomNavButtonModule } from '../../../shared/bottom-nav-button/bottom-nav-button.module';
 import { IonicModule } from '@ionic/angular';
 

@@ -1,31 +1,75 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="medium">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-back-button icon="chevron-back-outline"></ion-back-button>
     </ion-buttons>
-    <ion-title>Register User</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <form>
-    <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input type="text" #email required></ion-input>
-    </ion-item>
-    <ion-item lines="full">
-      <ion-label position="floating">Password</ion-label>
-      <ion-input type="password" #password required></ion-input>
-    </ion-item>
+<ion-content color="medium">
+  <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-button
-          type="submit"
-          (click)="signUp(email, password)"
-          expand="block"
-          >Register</ion-button
-        >
+        <div class="ion-padding ion-text-center">
+          <img width="250px" src="/assets/site-logo.svg" />
+        </div>
       </ion-col>
     </ion-row>
-  </form>
+    <ion-col>
+      <ion-text color="primary"
+        ><h5 class="ion-padding-start font-weight-bold">Sign up</h5></ion-text
+      >
+      <form>
+        <ion-card lines="full">
+          <ion-item>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-input
+              type="text"
+              placeholder="Email"
+              #email
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-card>
+        <ion-card lines="full">
+          <ion-item>
+            <ion-icon name="key-outline" slot="start"></ion-icon>
+            <ion-input
+              type="password"
+              placeholder="Password"
+              #password
+              required
+            ></ion-input>
+          </ion-item>
+        </ion-card>
+
+        <ion-row class="ion-text-center ion-padding-start">
+          <ion-checkbox
+            color="tertiary"
+            id="chkTerms"
+            name="other"
+            aria-label="..."
+            required
+          ></ion-checkbox>
+
+          <label for="chkLovedOne" class="ion-margin-start"
+            ><ion-text color="primary"
+              >I agree to the terms and conditions</ion-text
+            ></label
+          ></ion-row
+        >
+        <ion-row>
+          <ion-col>
+            <ion-button
+              color="light"
+              type="submit"
+              (click)="signUp(email, password)"
+              expand="block"
+              >Sign up</ion-button
+            >
+          </ion-col>
+        </ion-row>
+      </form>
+    </ion-col>
+  </ion-grid>
 </ion-content>

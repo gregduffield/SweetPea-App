@@ -11,7 +11,7 @@ export class StepThreeComponent implements OnInit {
   form: FormGroup;
   options = [
     'Washing and personal hygiene',
-    'Getting dressed in the morning and undressed at night',
+    'Getting dressed and undressed',
     'Meal planning and preparation',
     'Help with mobility and daily tasks',
   ];
