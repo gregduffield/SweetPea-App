@@ -1,7 +1,12 @@
 <div *ngIf="!loading">
   <ion-text class="ion-text-center" color="primary"
-    ><h4>Results go here</h4></ion-text
+    ><h4>Providers closest to you</h4></ion-text
   >
+  <ion-list>
+    <ion-item *ngFor="let provider of providers$ | async">
+      <ion-label>{{ provider.name }}</ion-label></ion-item
+    >
+  </ion-list>
 </div>
 
 <app-loading-screen *ngIf="loading"></app-loading-screen>

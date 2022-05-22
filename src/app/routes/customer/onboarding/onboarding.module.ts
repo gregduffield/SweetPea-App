@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { LoadingScreenModule } from '../../../shared/loading-screen/loading-screen.module';
 
 import { ResultsComponent } from './results/results.component';
@@ -64,6 +65,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
+    HttpClientModule,
     StepBoxModule,
     BottomNavButtonModule,
     LoadingScreenModule,

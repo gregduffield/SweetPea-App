@@ -1,42 +1,49 @@
 <app-step title="One last thing...">
   <form [formGroup]="form">
-   
     <ion-text color="primary" class="ion-padding-start">
-      What is the age of the person who would like some extra help?</ion-text>
-    
-   <!-- <ion-text color="primary" class="ion-padding-start">
+      What is the age of the person who would like some extra help?</ion-text
+    >
+
+    <!-- <ion-text color="primary" class="ion-padding-start">
         We're not just being nosey, it's just that some providers are more
         specialised in supporting younger adults.</ion-text> -->
-      
-    <app-step-box 
-                  >
-                    <ion-row>
-                      <ion-col >
-                        <ion-item >
-                          <ion-label position="floating">Age</ion-label>
-                         
-                          <ion-input  class="set-width" formControlName="age" id="age"></ion-input>
-                        </ion-item></ion-col>
-                  
-                      <ion-col>
-                        <ion-item >
-                          <ion-label position="floating">Postcode</ion-label>
-                         
-                          <ion-input class="set-width" formControlName="postcode" id="postcode"></ion-input>
-                        </ion-item></ion-col>
-                    </ion-row>
-               
-     
-     
+
+    <app-step-box>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Age</ion-label>
+
+            <ion-input formControlName="age" id="age"></ion-input> </ion-item
+        ></ion-col>
+
+        <ion-col>
+          <ion-item>
+            <ion-label position="floating">Postcode</ion-label>
+
+            <ion-input
+              formControlName="postcode"
+              id="postcode"
+              class="upper-case"
+              autocapitalize="characters"
+            ></ion-input> </ion-item
+        ></ion-col>
+      </ion-row>
     </app-step-box>
 
-     <ion-grid>
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <ion-button color="medium"  expand="block"
-                [disabled]="form.invalid"
-                routerLink="../results">
-         <ion-text color="primary"> Find care <ion-icon name="chevron-forward-outline"></ion-icon> </ion-text></ion-button>
-     </ion-col></ion-row></ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          <ion-button
+            color="medium"
+            expand="block"
+            [disabled]="form.invalid"
+            routerLink="../results"
+          >
+            <ion-text color="primary">
+              Find care
+              <ion-icon name="chevron-forward-outline"></ion-icon> </ion-text
+          ></ion-button> </ion-col></ion-row
+    ></ion-grid>
   </form>
 </app-step>

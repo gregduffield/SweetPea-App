@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { environment } from './../environments/environment';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -25,6 +26,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
     AngularFireStorageModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+    HttpClientModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

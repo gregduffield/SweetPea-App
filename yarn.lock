@@ -1990,6 +1990,13 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
+"@ngneat/cashew@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@ngneat/cashew/-/cashew-3.0.0.tgz#eb6c8c5e6a16b12079ea00bc2b967a97b4d31fcf"
+  integrity sha512-1xK6p5S76dY45PyNSdnuJKIW758BJsU+KbRrHH5RE49hzo6RGqlSC/ynuKn2yWV1zL4Z3vTMYCtqm/l79Gavsg==
+  dependencies:
+    tslib "^2.3.0"
+
 "@ngtools/webpack@13.2.6":
   version "13.2.6"
   resolved "https://registry.yarnpkg.com/@ngtools/webpack/-/webpack-13.2.6.tgz#8fe9c54dce13ec291eeef352ed773b77d1d0bed0"
