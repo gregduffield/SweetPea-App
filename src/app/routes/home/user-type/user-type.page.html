@@ -1,0 +1,32 @@
+<ion-header class="ion-no-border" color="medium">
+  <ion-toolbar color="medium"> </ion-toolbar>
+</ion-header>
+
+<ion-content color="medium">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <div class="ion-padding ion-text-center">
+          <img width="250px" src="/assets/site-logo.svg" />
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button
+          [routerLink]="['/customer/onboarding']"
+          expand="block"
+          color="primary"
+          >I am looking for care</ion-button
+        >
+        <ion-text class="ion-text-center"><p>or</p> </ion-text>
+        <ion-button
+          [routerLink]="['/provider/onboarding']"
+          expand="block"
+          color="light"
+          >I want to provide care</ion-button
+        >
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

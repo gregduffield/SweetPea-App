@@ -7,7 +7,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home',
+    redirectTo: 'user-type',
   },
   {
     path: 'customer',
@@ -16,10 +16,18 @@ const routes: Routes = [
       import('./routes/customer/customer.module').then((m) => m.CustomerModule),
   },
   {
+    path: 'user-type',
+    loadChildren: () =>
+      import('./routes/home/user-type/user-type.module').then(
+        (m) => m.UserTypePageModule
+      ),
+  },
+  {
     path: 'home',
     loadChildren: () =>
       import('./routes/home/home.module').then((m) => m.HomePageModule),
   },
+
   {
     path: 'registration',
     loadChildren: () =>
@@ -56,7 +64,8 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }), LayoutModule
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    LayoutModule,
   ],
   exports: [RouterModule],
 })
