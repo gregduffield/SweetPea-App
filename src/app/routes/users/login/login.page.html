@@ -19,49 +19,48 @@
         <ion-text color="primary"
           ><h5 class="ion-padding-start font-weight-bold">Sign in</h5></ion-text
         >
-        <form>
-          <ion-card lines="full">
-            <ion-item>
-              <ion-icon name="person-outline" slot="start"></ion-icon>
-              <ion-input
-                type="text"
-                placeholder="Email"
-                #email
-                required
-              ></ion-input>
-            </ion-item>
-          </ion-card>
-          <ion-card lines="full">
-            <ion-item>
-              <ion-icon name="key-outline" slot="start"></ion-icon>
-              <ion-input
-                type="password"
-                placeholder="Password"
-                #password
-                required
-              ></ion-input>
-            </ion-item>
-          </ion-card>
-          <ion-row>
-            <ion-col>
-              <ion-button
-                color="light"
-                type="submit"
-                (click)="logIn(email, password)"
-                expand="block"
-                >Login</ion-button
-              >
+        <form [formGroup]="form" (ngSubmit)="logIn()">
+          <ion-item>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            <ion-input
+              type="email"
+              placeholder="Email"
+              formControlName="email"
+            ></ion-input>
+            <ion-note
+              slot="error"
+              *ngIf="(email.dirty || email.touched) && email.errors"
+              >Email is not valid</ion-note
+            >
+          </ion-item>
+          <ion-item>
+            <ion-icon name="key-outline" slot="start"></ion-icon>
+            <ion-input
+              type="password"
+              placeholder="Password"
+              formControlName="password"
+            ></ion-input>
+            <ion-note
+              slot="error"
+              *ngIf="(password.dirty || password.touched) && password.errors"
+              >Password is not valid</ion-note
+            >
+          </ion-item>
 
-              <ion-text class="ion-text-center"><p>or</p></ion-text>
-              <ion-button
-                type="submit"
-                color="danger"
-                (click)="authService.googleAuth()"
-                expand="block"
-                >Login with Google</ion-button
-              >
-            </ion-col>
-          </ion-row>
+          <ion-button
+            color="light"
+            type="submit"
+            expand="full"
+            [disabled]="!form.valid"
+            >Login</ion-button
+          >
+          <ion-button color="light" type="button" expand="full"
+            >Create account</ion-button
+          >
+          <ion-text class="ion-text-center"><p>or</p></ion-text>
+          <ion-button type="submit" color="danger" expand="fukk"
+            >Login with Google</ion-button
+          >
         </form>
       </ion-col>
     </ion-row>

@@ -1,13 +1,21 @@
 import { User } from './../models/user';
 import { Injectable, NgZone, NgModule } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {
-  AngularFirestore,
-  AngularFirestoreDocument,
-} from '@angular/fire/compat/firestore';
+
 import { Router } from '@angular/router';
-import * as auth from 'firebase/auth';
-import { defer, from } from 'rxjs';
+import { Observable } from 'rxjs';
+import {
+  Auth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from '@angular/fire/auth';
+import { docData, collection, doc, Firestore } from '@angular/fire/firestore';
+import {
+  sendEmailVerification,
+  sendPasswordResetEmail,
+  signOut,
+} from 'firebase/auth';
+import { emailVerified } from '@angular/fire/auth-guard';
 @Injectable({
   providedIn: 'root',
 })
@@ -15,22 +23,11 @@ export class AuthenticationService {
   userData: any;
 
   constructor(
-    public afStore: AngularFirestore,
-    public ngFireAuth: AngularFireAuth,
+    private firestore: Firestore,
+    private auth: Auth,
     public router: Router,
     public ngZone: NgZone
-  ) {
-    this.ngFireAuth.authState.subscribe((user) => {
-      if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
-      } else {
-        localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
-      }
-    });
-  }
+  ) {}
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -41,74 +38,40 @@ export class AuthenticationService {
     const user = JSON.parse(localStorage.getItem('user'));
     return user.emailVerified !== false ? true : false;
   }
-  signIn(email: string, password: string) {
-    return defer(() =>
-      from(
-        this.ngFireAuth
-          .signInWithEmailAndPassword(email, password)
-          .then((res) => {
-            this.setUserData(res.user);
-            return res.user;
-          })
-      )
-    );
+
+  async logIn({ email, password }) {
+    try {
+      const user = await signInWithEmailAndPassword(this.auth, email, password);
+      return user;
+    } catch (e) {
+      return null;
+    }
   }
 
-  registerUser(email: string, password: string) {
-    return this.ngFireAuth.createUserWithEmailAndPassword(email, password);
+  async registerUser({ email, password }) {
+    try {
+      const user = await createUserWithEmailAndPassword(
+        this.auth,
+        email,
+        password
+      );
+      return user;
+    } catch (e) {
+      return null;
+    }
   }
 
-  sendEmailVerification() {
-    return this.ngFireAuth.currentUser.then((user) =>
-      user.sendEmailVerification().then(() => this.router.navigate(['login']))
-    );
-  }
-
-  passwordRecover(passwordResetEmail: string) {
-    return this.ngFireAuth
-      .sendPasswordResetEmail(passwordResetEmail)
-      .then(() =>
-        window.alert(
-          'Password reset email has been sent, please check your inbox'
-        )
-      )
-      .catch((error) => window.alert(error));
-  }
-
-  googleAuth() {
-    return this.authLogin(new auth.GoogleAuthProvider());
-  }
-  authLogin(provider) {
-    return this.ngFireAuth
-      .signInWithPopup(provider)
-      .then((result) => {
-        this.ngZone.run(() => {
-          this.router.navigate(['dashboard']);
-        });
-        this.setUserData(result.user);
-      })
-      .catch((error) => window.alert(error));
+  async passwordRecover(passwordResetEmail: string) {
+    await sendPasswordResetEmail(this.auth, passwordResetEmail);
+    window.alert('Password reset email has been sent, please check your inbox');
   }
 
   setUserData(user) {
-    const userRef: AngularFirestoreDocument<any> = this.afStore.doc(
-      `users/${user.uid}`
-    );
-    const userData: User = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoUrl: user.photoURL,
-      emailVerified: user.emailVerified,
-    };
-
-    return userRef.set(userData, { merge: true });
+    const userRef = doc(this.firestore, `userprofile/${user.uid}`);
+    const userData = docData(userRef, { idField: 'id' }) as Observable<User>;
   }
 
-  signOut() {
-    return this.ngFireAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      this.router.navigate(['login']);
-    });
+  logOut() {
+    signOut(this.auth);
   }
 }
