@@ -1,5 +1,8 @@
+import { Observable } from 'rxjs';
+import { AuthenticationService } from './../shared/services/authentication.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonToggle, MenuController } from '@ionic/angular';
+import { UserProfile } from 'src/app/shared/models/user';
 
 @Component({
   selector: 'app-layout',
@@ -7,11 +10,16 @@ import { IonToggle, MenuController } from '@ionic/angular';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
+  userProfile$!: Observable<UserProfile>;
   private isDarkMode = false;
-  constructor(private menu: MenuController) {}
+  constructor(
+    private menu: MenuController,
+    private authService: AuthenticationService
+  ) {}
 
   ngOnInit() {
     this.isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    this.userProfile$ = this.authService.currentUserProfile$;
   }
 
   openMenu() {

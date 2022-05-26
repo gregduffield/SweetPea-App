@@ -1,9 +1,9 @@
-import { User } from './../models/user';
+import { User, UserProfile } from './../models/user';
 import { Injectable, NgZone, NgModule } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   Auth,
   signInWithEmailAndPassword,
@@ -11,23 +11,36 @@ import {
 } from '@angular/fire/auth';
 import { docData, collection, doc, Firestore } from '@angular/fire/firestore';
 import {
+  onAuthStateChanged,
   sendEmailVerification,
   sendPasswordResetEmail,
   signOut,
 } from 'firebase/auth';
 import { emailVerified } from '@angular/fire/auth-guard';
+import { filter } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
-  userData: any;
+  currentUserProfile = new BehaviorSubject<UserProfile>(null);
+  currentUserProfile$ = this.currentUserProfile.asObservable();
 
   constructor(
     private firestore: Firestore,
     private auth: Auth,
     public router: Router,
     public ngZone: NgZone
-  ) {}
+  ) {
+    onAuthStateChanged(this.auth, (user) => {
+      if (user) {
+        // get the user profile
+        this.setUserProfile(user);
+      } else {
+        //clear the user profile
+        this.currentUserProfile.next(null);
+      }
+    });
+  }
 
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
@@ -42,6 +55,7 @@ export class AuthenticationService {
   async logIn({ email, password }) {
     try {
       const user = await signInWithEmailAndPassword(this.auth, email, password);
+
       return user;
     } catch (e) {
       return null;
@@ -66,9 +80,14 @@ export class AuthenticationService {
     window.alert('Password reset email has been sent, please check your inbox');
   }
 
-  setUserData(user) {
-    const userRef = doc(this.firestore, `userprofile/${user.uid}`);
-    const userData = docData(userRef, { idField: 'id' }) as Observable<User>;
+  async setUserProfile(user) {
+    const userRef = doc(this.firestore, `userprofiles/${user.uid}`);
+    const userData = docData(userRef, {
+      idField: 'id',
+    }) as Observable<UserProfile>;
+    userData
+      .pipe(filter((profile) => !!profile))
+      .subscribe((profile) => this.currentUserProfile.next(profile));
   }
 
   logOut() {
