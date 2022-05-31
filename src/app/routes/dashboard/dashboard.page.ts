@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.page.scss'],
 })
 export class DashboardPage implements OnInit {
-  constructor(public authService: AuthenticationService) {}
+  constructor(private authService: AuthenticationService) {}
 
   ngOnInit() {}
+
+  async logout() {
+    await this.authService.logOut();
+  }
 }

@@ -3,34 +3,57 @@ import { AuthenticationService } from './../../../shared/services/authentication
 import { Component, OnInit } from '@angular/core';
 import { catchError, filter, map } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  form: FormGroup = null;
+
   constructor(
     public authService: AuthenticationService,
-    public router: Router
+    public router: Router,
+    private loadingController: LoadingController,
+    private alertController: AlertController,
+    private fb: FormBuilder
   ) {}
 
-  ngOnInit() {}
+  get email() {
+    return this.form.get('email');
+  }
 
-  logIn(email, password) {
-    this.authService
-      .signIn(email.value, password.value)
-      .pipe(
-        filter((user) => !!user),
-        map((res) => {
-          if (this.authService.isEmailVerified) {
-            this.router.navigate(['dashboard']);
-          } else {
-            window.alert('Email is not verififed');
-            return false;
-          }
-        }),
-        catchError((error) => of(window.alert(error)))
-      )
-      .subscribe();
+  get password() {
+    return this.form.get('password');
+  }
+
+  ngOnInit() {
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
+  }
+
+  async logIn() {
+    const loading = await this.loadingController.create();
+    const user = await this.authService.logIn(this.form.value);
+    await loading.dismiss();
+
+    if (user) {
+      this.router.navigateByUrl('/dashboard', { replaceUrl: true });
+    } else {
+      this.showAlert('Login failed', 'Please try again');
+    }
+  }
+
+  async showAlert(header, message) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: ['OK'],
+    });
+    await alert.present();
   }
 }

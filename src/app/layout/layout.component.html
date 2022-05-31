@@ -4,8 +4,11 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
 
-    <ion-title
-      ><div class="ion-padding ion-text-center">
+    <ion-title>
+      <span *ngIf="userProfile$ | async as profile">
+        {{ profile.isAdmin }}
+      </span>
+      <div class="ion-padding ion-text-center">
         <img width="150px" src="/assets/site-logo.svg" /></div
     ></ion-title>
   </ion-toolbar>

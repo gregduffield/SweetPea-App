@@ -5,3 +5,7 @@ export interface User {
   photoUrl: string;
   emailVerified: string;
 }
+
+export interface UserProfile {
+  isAdmin: boolean;
+}

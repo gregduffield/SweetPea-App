@@ -3,6 +3,14 @@ import { LayoutComponent } from './layout/layout.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import {
+  canActivate,
+  redirectLoggedInTo,
+  redirectUnauthorizedTo,
+} from '@angular/fire/auth-guard';
+
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['/login']);
+const redirectLoggedInToDashboard = () => redirectLoggedInTo(['dashboard']);
 const routes: Routes = [
   {
     path: '',
@@ -48,6 +56,7 @@ const routes: Routes = [
       import('./routes/users/login/login.module').then(
         (m) => m.LoginPageModule
       ),
+    ...canActivate(redirectLoggedInToDashboard),
   },
   {
     path: 'dashboard',
@@ -55,6 +64,7 @@ const routes: Routes = [
       import('./routes/dashboard/dashboard.module').then(
         (m) => m.DashboardPageModule
       ),
+    ...canActivate(redirectUnauthorizedToLogin),
   },
   {
     path: 'home',
