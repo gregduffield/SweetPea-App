@@ -3,6 +3,7 @@ import { ProvidersService } from './../../../../shared/services/providers.servic
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { FormProvider } from 'src/app/routes/customer/onboarding/form-provider';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-results',
@@ -20,12 +21,11 @@ export class ResultsComponent implements OnInit {
   ngOnInit() {
     const data = this.formProvider.getForm().value;
 
-    this.providers$ = this.providerService.getClosestCQCProviders({
-      postcode: data.personDetails.postcode,
-      miles: 10,
-    });
-    setTimeout((_) => {
-      this.loading = false;
-    }, 2000);
+    this.providers$ = this.providerService
+      .getClosestCQCProviders({
+        postcode: data.personDetails.postcode,
+        miles: 10,
+      })
+      .pipe(tap((_) => (this.loading = false)));
   }
 }
