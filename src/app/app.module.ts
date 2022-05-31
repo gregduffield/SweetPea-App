@@ -18,6 +18,7 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideFirestore(() => getFirestore()),
     provideAuth(() => getAuth()),
