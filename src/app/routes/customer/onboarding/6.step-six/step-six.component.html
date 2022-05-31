@@ -1,23 +1,26 @@
-<app-step title="When do you need care?">
-  <form [formGroup]="form">
-    <app-step-box
-      [align]="'ion-text-start'"
-      *ngFor="let item of form.value | keyvalue: returnZero; let i = index"
-    >
-      <ion-checkbox
-        color="tertiary"
-        value=""
-        [id]="'chk' + item.key"
-      ></ion-checkbox>
-      <label
-        class="form-check-label ms-2"
-        [for]="'chk' + item.key"
-        class="ion-margin-start"
-        ><ion-text color="primary"> {{ item.key }}</ion-text>
-      </label>
-    </app-step-box>
-  </form>
-</app-step>
+<ion-content color="light"
+  ><app-step title="When do you need care?">
+    <form [formGroup]="form">
+      <app-step-box
+        [align]="'ion-text-start'"
+        *ngFor="let item of form.value | keyvalue: returnZero; let i = index"
+      >
+        <ion-checkbox
+          color="tertiary"
+          value=""
+          [id]="'chk' + item.key"
+        ></ion-checkbox>
+        <label
+          class="form-check-label ms-2"
+          [for]="'chk' + item.key"
+          class="ion-margin-start"
+          ><ion-text color="primary"> {{ item.key }}</ion-text>
+        </label>
+      </app-step-box>
+    </form>
+  </app-step>
+</ion-content>
+
 <app-bottom-nav-button
   [form]="form"
   [routerLink]="'../step-7'"

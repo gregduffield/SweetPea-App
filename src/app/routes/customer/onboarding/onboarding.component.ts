@@ -5,7 +5,7 @@ import { FormProvider } from './form-provider';
 
 @Component({
   selector: 'app-onboarding',
-  template: '<ion-router-outlet></ion-router-outlet>',
+  template: '<ion-content class="ion-padding" color="light" overflow-scroll="true"><ion-router-outlet></ion-router-outlet></ion-content>',
 
   providers: [{ provide: FormProvider, useExisting: OnboardingComponent }],
 })

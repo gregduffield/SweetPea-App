@@ -11,30 +11,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" color="light">
+<ion-content class="ion-padding" color="light" overflow-scroll="true">
   <ion-router-outlet id="main"></ion-router-outlet>
 </ion-content>
-<ion-menu side="start" menuId="profile" contentId="main">
-  <ion-header>
-    <ion-toolbar color="primary">
-      <ion-title>Start Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-list>
-      <ion-item
-        ><ion-icon slot="start" name="moon"></ion-icon>
-        <ion-label> Toggle Dark Theme </ion-label>
-        <ion-toggle
-          id="themeToggle"
-          slot="end"
-          (ionChange)="toggleDarkMode($event)"
-        ></ion-toggle
-      ></ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-      <ion-item>Menu Item</ion-item>
-    </ion-list>
-  </ion-content>
-</ion-menu>
