@@ -1,7 +1,7 @@
-import { LayoutComponent } from './../../layout/layout.component';
 import { ProfilePageModule } from './profile/profile.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LayoutComponent } from 'src/app/routes/provider/layout/layout.component';
 
 const routes: Routes = [
   {
