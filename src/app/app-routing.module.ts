@@ -71,6 +71,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./routes/home/home.module').then((m) => m.HomePageModule),
   },
+  {
+    path: 'provider',
+    loadChildren: () =>
+      import('./routes/provider/provider.module').then((m) => m.ProviderModule),
+  },
 ];
 @NgModule({
   imports: [
