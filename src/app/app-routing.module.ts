@@ -58,14 +58,7 @@ const routes: Routes = [
       ),
     ...canActivate(redirectLoggedInToDashboard),
   },
-  {
-    path: 'dashboard',
-    loadChildren: () =>
-      import('./routes/dashboard/dashboard.module').then(
-        (m) => m.DashboardPageModule
-      ),
-    ...canActivate(redirectUnauthorizedToLogin),
-  },
+
   {
     path: 'home',
     loadChildren: () =>
@@ -79,7 +72,10 @@ const routes: Routes = [
 ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+      enableTracing: false,
+    }),
     LayoutModule,
   ],
   exports: [RouterModule],
